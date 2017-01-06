@@ -66,14 +66,21 @@ li {
   background-color: rgba(0, 0, 0, 0.1);
 	display: block;
 	float: left;
+	user-select: none;
+}
+
+.minesweeper tr {
+	display: block;
 }
 
 .minesweeper td {
   display: block;
   float: left;
-  height: 20px;
-	width: 20px;
+  height: 3vh;
+	width: 3vh;
 	text-align: center;
+	font-size: 3vh;
+	overflow: hidden;
 }
 
 .minesweeper td.unopened {

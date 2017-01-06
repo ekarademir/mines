@@ -161,6 +161,10 @@ function constuctMinefield(board) {
         }
       }
 
+      if(board[i][j] >0) {
+        td.addEventListener("dblclick", checkNeighbors);
+      }
+
       // A unique id for each tile.
       td.setAttribute("id", i+"-"+j);
 
@@ -256,7 +260,7 @@ function zeroIslands(board) {
 }
 
 
-function revealTile(r,c, failed = false) {
+function revealTile(r,c, failed = false, dbl = false) {
   if(revealed[r][c] !== true) {
     revealed[r][c] = true;
     tile = document.getElementById(r+"-"+c);
@@ -272,6 +276,8 @@ function revealTile(r,c, failed = false) {
     } else if(tileVal == -1){
       if(failed) {
         tile.setAttribute("class", "minefail");
+      } else if(dbl){
+        tile.setAttribute("class", "flag");
       } else {
         tile.setAttribute("class", "minesuccess");
       }
@@ -374,6 +380,127 @@ function checkTile(e) {
     placeFlag(row, col);
     if(numFlags == numMines) {
       checkGame();
+    }
+  }
+}
+
+function checkNeighbors(e) {
+
+  let id = e.target.getAttribute("id");
+  let tile = id.split("-");
+  let row = parseInt(tile[0]);
+  let col = parseInt(tile[1]);
+
+  // console.log("doubleclick");
+  if(revealed[row][col] === true) {
+    if(gamingBoard[row][col] > 0) {
+      let top = row-1, bottom = row+1, midrow = row, right = col+1, left = col-1, midcol = col;
+      // check if there is right amount of flags around
+      let nFlags = 0;
+      if(top >=0){
+        if(flags[top][midcol] == 1) {
+          nFlags++;
+        }
+
+        if(left>=0) {
+          if(flags[top][left] == 1) {
+            nFlags++;
+          }
+        }
+
+        if(right < cols) {
+          if(flags[top][right] == 1) {
+            nFlags++;
+          }
+        }
+      }
+      if(left>=0) {
+        if(flags[midrow][left] == 1) {
+          nFlags++;
+        }
+      }
+      if(right < cols) {
+        if(flags[midrow][right] == 1) {
+          nFlags++;
+        }
+      }
+      if(bottom < rows){
+        if(flags[bottom][midcol] == 1) {
+          nFlags++;
+        }
+        if(left >= 0) {
+          if(flags[bottom][left] == 1) {
+            nFlags++;
+          }
+        }
+        if(right < cols){
+          if(flags[bottom][right] == 1) {
+            nFlags++;
+          }
+        }
+      }
+
+      if(nFlags == gamingBoard[row][col]) {
+        if(top >=0){
+          if(gamingBoard[top][midcol] == -1 && flags[top][midcol] != 1) {
+            revealAll(true);
+          } else {
+            revealTile(top,midcol,false,true);
+          }
+
+          if(left>=0) {
+            if(gamingBoard[top][left] == -1 && flags[top][left] != 1) {
+              revealAll(true);
+            } else {
+              revealTile(top,left,false,true);
+            }
+          }
+
+          if(right < cols) {
+            if(gamingBoard[top][right] == -1 && flags[top][right] != 1) {
+              revealAll(true);
+            } else {
+              revealTile(top,right,false,true);
+            }
+          }
+        }
+        if(left>=0) {
+          if(gamingBoard[midrow][left] == -1 && flags[midrow][left] != 1) {
+            revealAll(true);
+          } else {
+            revealTile(midrow,left,false,true);
+          }
+        }
+        if(right < cols) {
+          if(gamingBoard[midrow][right] == -1 && flags[midrow][right] != 1) {
+            revealAll(true);
+          } else {
+            revealTile(midrow,right,false,true);
+          }
+        }
+        if(bottom < rows){
+          if(gamingBoard[bottom][midcol] == -1 && flags[bottom][midcol] != 1) {
+            revealAll(true);
+          } else {
+            revealTile(bottom,midcol,false,true);
+          }
+          if(left >= 0){
+            if(gamingBoard[bottom][left] == -1 && flags[bottom][left] != 1) {
+              revealAll(true);
+            } else {
+              revealTile(bottom,left,false,true);
+            }
+          }
+          if(right < cols){
+            if(gamingBoard[bottom][right] == -1 && flags[bottom][right] != 1) {
+              revealAll(true);
+            } else {
+              revealTile(bottom,right,false,true);
+            }
+          }
+        }
+
+      }
     }
   }
 }
