@@ -47,6 +47,21 @@ table {
 	border-spacing: 0;
 }
 
+h2 {
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+li {
+	list-style-type: circle;
+	list-style-position: inside;
+}
+
+.instructions {
+	display: block;
+	clear: both;
+}
+
 .minesweeper {
   background-color: rgba(0, 0, 0, 0.1);
 	display: block;
