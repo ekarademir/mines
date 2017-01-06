@@ -370,7 +370,9 @@ function checkTile(e) {
     } // end if zero island
 
     if(gamingBoard[row][col] == -1) {
-      revealAll(true);// failed
+      if(flags[row][col] == 0) {
+        revealAll(true);// failed
+      }
     }
 
     if(gamingBoard[row][col] > 0) {
