@@ -397,7 +397,7 @@ function checkGame() {
 
 
 var minefield = document.getElementsByClassName("minesweeper")[0];
-document.addEventListener("contextmenu", function(e){
+minefield.addEventListener("contextmenu", function(e){
     e.preventDefault();
 }, false);
 
