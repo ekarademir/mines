@@ -62,18 +62,18 @@ li {
 	clear: both;
 }
 
-.minesweeper {
+.mines {
   background-color: rgba(0, 0, 0, 0.1);
 	display: block;
 	float: left;
 	user-select: none;
 }
 
-.minesweeper tr {
+.mines tr {
 	display: block;
 }
 
-.minesweeper td {
+.mines td {
   display: block;
   float: left;
   height: 3vh;
@@ -83,56 +83,56 @@ li {
 	overflow: hidden;
 }
 
-.minesweeper td.unopened {
+.mines td.unopened {
 	background-color: rgba(0, 0, 0, 0.5);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.unopenedmine {
+.mines td.unopenedmine {
 	background-color: rgba(0, 0, 0, 0.7);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.unopenedzero {
+.mines td.unopenedzero {
 	background-color: rgba(0, 0, 0, 0.3);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.opened {
+.mines td.opened {
 	background-color: rgba(0, 0, 0, 0.1);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.mine {
+.mines td.mine {
 	background-color: rgba(0, 0, 0, 0.7);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.flag {
+.mines td.flag {
 	background-color: rgba(0, 0, 255, 0.7);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.minefail {
+.mines td.minefail {
 	background-color: rgba(255, 0, 0, 0.5);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
 	border-width: 1px;
 }
 
-.minesweeper td.minesuccess {
+.mines td.minesuccess {
 	background-color: rgba(0, 255, 0, 0.5);
 	border-color: rgba(0, 0, 0, 0.7);
 	border-style: solid;
